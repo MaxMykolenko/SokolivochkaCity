@@ -54,11 +54,12 @@
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
-            const response = await fetch('http://176.98.10.66:5500/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, email, password })
-            });
+            const cors = require('cors');
+                app.use(cors({
+                origin: 'https://maxmykolenko.github.io/SokolivochkaCity/', // Дозволити лише цей сайт
+                methods: ['POST'],
+                allowedHeaders: ['Content-Type']
+            }));
 
             const result = await response.json();
             alert(result.message);
