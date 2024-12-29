@@ -62,5 +62,29 @@
             }
         });
     </script>
+     <script>
+        // Перевірка стану авторизації
+        const token = localStorage.getItem('authToken');
+        const buttonGroup = document.getElementById('buttonGroup');
+
+        if (token) {
+            buttonGroup.innerHTML = `
+                <button class="btn" onclick="location.href='profile.html'">Профіль</button>
+                <button class="btn" onclick="logOut()">Вийти</button>
+            `;
+        }
+
+        // Вхід
+        function logIn(token) {
+            localStorage.setItem('authToken', token);
+            location.reload();
+        }
+
+        // Вихід
+        function logOut() {
+            localStorage.removeItem('authToken');
+            location.reload();
+        }
+    </script>
 </body>
 </html>
